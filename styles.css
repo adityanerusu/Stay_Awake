@@ -1,0 +1,735 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+
+
+:root {
+
+/* Light Theme Colors */
+
+--emerald: #47e2b2;
+
+--soft-teal: #50d8ee;
+
+--blush: #ffe9ed;
+
+--cream: #fff9ec;
+
+--main-bg: linear-gradient(120deg, #f8fff8 0%, #e1fff7 100%);
+
+--shape1: #bffcff80;
+
+--shape2: #ffe7ed8c;
+
+--card-glass: rgba(255,255,255,0.74);
+
+--footer-glass: rgba(255,255,255,0.84);
+
+--text-main: #17202a;
+
+--text-sub: #466160;
+
+
+
+/* Dark Theme Colors */
+
+--dark-bg: linear-gradient(120deg, #1a2234 0%, #2e4772 100%);
+
+--shape1-dark: #176b8760;
+
+--shape2-dark: #fc9dbf3d;
+
+--card-glass-dark: rgba(27, 35, 51, 0.75);
+
+--footer-glass-dark: rgba(30,40,56,0.93);
+
+--text-main-dark: #eaf4fa;
+
+--text-sub-dark: #93c7f3;
+
+}
+
+
+
+body {
+
+min-height: 100vh;
+
+margin: 0;
+
+font-family: 'Inter', system-ui, sans-serif;
+
+transition: background 0.7s cubic-bezier(.65,.05,.36,1);
+
+position: relative;
+
+overflow-x: hidden;
+
+color: var(--text-main);
+
+background: var(--main-bg);
+
+}
+
+
+
+.background {
+
+position: fixed;
+
+inset: 0;
+
+width: 100vw; height: 100vh;
+
+z-index: 0;
+
+pointer-events: none;
+
+overflow: hidden;
+
+transition: background 1s cubic-bezier(.65,.05,.36,1);
+
+}
+
+body.light .background {
+
+background: var(--main-bg);
+
+}
+
+body.light .background::before {
+
+content: "";
+
+position: absolute;
+
+top: -16vw; left: -14vw;
+
+width: 38vw; height: 38vw;
+
+background: var(--shape1);
+
+border-radius: 50%;
+
+filter: blur(22px);
+
+z-index: 1;
+
+}
+
+body.light .background::after {
+
+content: "";
+
+position: absolute;
+
+right: -19vw; bottom: -16vw;
+
+width: 35vw; height: 35vw;
+
+background: var(--shape2);
+
+border-radius: 50%;
+
+filter: blur(33px);
+
+z-index: 1;
+
+}
+
+body.dark .background {
+
+background: var(--dark-bg);
+
+}
+
+body.dark .background::before {
+
+content: "";
+
+position: absolute;
+
+top: -14vw; left: -12vw;
+
+width: 37vw; height: 37vw;
+
+background: var(--shape1-dark);
+
+border-radius: 50%;
+
+filter: blur(26px);
+
+z-index: 1;
+
+}
+
+body.dark .background::after {
+
+content: "";
+
+position: absolute;
+
+right: -18vw; bottom: -12vw;
+
+width: 31vw; height: 31vw;
+
+background: var(--shape2-dark);
+
+border-radius: 50%;
+
+filter: blur(36px);
+
+z-index: 1;
+
+}
+
+
+
+main {
+
+min-height: 90vh;
+
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+
+position: relative;
+
+z-index: 3;
+
+}
+
+
+
+.glass-card {
+
+margin-top: 6vh;
+
+background: var(--card-glass);
+
+border-radius: 2.1rem;
+
+box-shadow: 0 4px 48px 0 rgba(44,44,84,0.14);
+
+padding: 2.9rem 2.1rem 2.7rem 2.1rem;
+
+max-width: 370px;
+
+width: 97vw;
+
+text-align: center;
+
+backdrop-filter: blur(22px) saturate(140%);
+
+border: 1.7px solid rgba(180, 230, 220, 0.16);
+
+transition: background 0.5s, border 0.5s, box-shadow 0.6s;
+
+z-index: 3;
+
+}
+
+body.dark .glass-card {
+
+background: var(--card-glass-dark);
+
+border: 1.7px solid rgba(144, 211, 249, 0.10);
+
+box-shadow: 0 8px 44px 0 rgba(31,44,69,0.19);
+
+}
+
+
+
+.title {
+
+font-size: 2.25rem;
+
+font-weight: 800;
+
+letter-spacing: -0.03em;
+
+color: var(--text-main);
+
+margin-bottom: 0.2em;
+
+transition: color 0.5s;
+
+}
+
+body.dark .title {
+
+color: var(--text-main-dark);
+
+}
+
+.subtitle {
+
+font-size: 1.12rem;
+
+color: var(--text-sub);
+
+margin-bottom: 2.1em;
+
+opacity: 0.9;
+
+transition: color 0.5s;
+
+}
+
+body.dark .subtitle {
+
+color: var(--text-sub-dark);
+
+}
+
+
+
+.action-group {
+
+display: flex;
+
+flex-direction: column;
+
+align-items: center;
+
+gap: 1.2em;
+
+margin-bottom: 2.1em;
+
+}
+
+
+
+/* Wake Lock Button */
+
+.wake-btn {
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+gap: 0.7em;
+
+background: linear-gradient(90deg, var(--emerald), var(--soft-teal));
+
+color: #fff;
+
+font-size: 1.07em;
+
+font-weight: 600;
+
+border: none;
+
+border-radius: 2em;
+
+padding: 0.7em 1.7em;
+
+cursor: pointer;
+
+box-shadow: 0 2px 24px 0 rgba(54,220,190,0.12);
+
+transition: box-shadow 0.3s, background 0.4s;
+
+outline: none;
+
+position: relative;
+
+}
+
+.wake-btn:active {
+
+box-shadow: 0 1px 6px 0 rgba(44, 144, 164, 0.09);
+
+}
+
+body.dark .wake-btn {
+
+background: linear-gradient(90deg, #24a59b 25%, #138db4 80%);
+
+color: #f4faff;
+
+}
+
+
+
+/* Wake Icon (simple dot with waves when active) */
+
+.wake-icon {
+
+display: inline-block;
+
+width: 1.1em; height: 1.1em;
+
+border-radius: 50%;
+
+background: #fff;
+
+box-shadow: 0 0 0 0 rgba(68,226,178,0.3);
+
+transition: box-shadow 0.35s;
+
+position: relative;
+
+}
+
+.wake-btn.active .wake-icon {
+
+animation: wakewave 1.3s infinite linear;
+
+}
+
+@keyframes wakewave {
+
+0% { box-shadow: 0 0 0 0 rgba(68,226,178,0.22);}
+
+70% { box-shadow: 0 0 0 10px rgba(68,226,178,0.05);}
+
+100% { box-shadow: 0 0 0 0 rgba(68,226,178,0.02);}
+
+}
+
+.wake-text {
+
+letter-spacing: 0.01em;
+
+}
+
+
+
+.info {
+
+margin: 1.4em 0 0.6em 0;
+
+font-size: 1.08em;
+
+color: var(--text-sub);
+
+min-height: 22px;
+
+transition: color 0.5s;
+
+opacity: 0.92;
+
+}
+
+body.dark .info {
+
+color: var(--text-sub-dark);
+
+}
+
+
+
+/* Modern Darkmode Switch Button */
+
+.darkmode-btn {
+
+position: fixed;
+
+top: 1.5em; right: 1.6em;
+
+z-index: 13;
+
+width: 58px; height: 32px;
+
+background: rgba(255,255,255,0.34);
+
+border-radius: 22px;
+
+border: none;
+
+display: flex;
+
+align-items: center;
+
+padding: 0 0.35em;
+
+cursor: pointer;
+
+transition: background 0.45s, box-shadow 0.4s;
+
+box-shadow: 0 2px 12px 0 rgba(52,190,210,0.07);
+
+outline: none;
+
+}
+
+body.dark .darkmode-btn {
+
+background: rgba(35,46,72,0.84);
+
+}
+
+.darkmode-btn .icon {
+
+font-size: 1.32em;
+
+width: 26px; height: 26px;
+
+text-align: center;
+
+line-height: 27px;
+
+transition: color 0.5s, opacity 0.5s;
+
+}
+
+.icon.sun:before {
+
+content: "☀️";
+
+opacity: 1;
+
+}
+
+.icon.moon:before {
+
+content: "🌙";
+
+opacity: 0.55;
+
+}
+
+body.dark .icon.sun:before { opacity: 0.30; }
+
+body.dark .icon.moon:before { opacity: 1; }
+
+.toggle-slider {
+
+width: 28px; height: 28px;
+
+border-radius: 50%;
+
+background: linear-gradient(120deg, #fff 80%, #d2f6e7 100%);
+
+position: absolute;
+
+left: 4px; top: 2px;
+
+box-shadow: 0 2px 12px #bdf2f6;
+
+transition: left 0.36s cubic-bezier(.4,0,.2,1), background 0.5s;
+
+}
+
+body.dark .toggle-slider {
+
+left: 26px;
+
+background: linear-gradient(120deg, #2e4772 60%, #93c7f3 100%);
+
+box-shadow: 0 2px 13px #3e78af;
+
+}
+
+
+
+/* Footer Love */
+
+footer {
+
+width: 100vw;
+
+position: fixed;
+
+left: 0;
+
+bottom: 0;
+
+z-index: 11;
+
+display: flex;
+
+justify-content: center;
+
+align-items: flex-end;
+
+pointer-events: none;
+
+}
+
+.love-footer {
+
+position: relative;
+
+margin-bottom: 0.5em;
+
+pointer-events: auto;
+
+min-width: 230px;
+
+display: flex;
+
+justify-content: center;
+
+align-items: flex-end;
+
+}
+
+.love-glow {
+
+position: absolute;
+
+left: 50%; top: 54%;
+
+transform: translate(-50%,-50%);
+
+width: 110%;
+
+height: 120%;
+
+background: radial-gradient(ellipse at center, #a0ffe8 0%, #d0f4ff55 80%, transparent 100%);
+
+opacity: 0.62;
+
+filter: blur(14px);
+
+border-radius: 44px 44px 0 0;
+
+z-index: 1;
+
+animation: loveglow 3s infinite alternate cubic-bezier(.4,0,.6,1);
+
+pointer-events: none;
+
+}
+
+@keyframes loveglow {
+
+0% { opacity: 0.62; }
+
+100% { opacity: 0.87; }
+
+}
+
+.with-love {
+
+font-size: 1.28em;
+
+font-weight: 700;
+
+color: var(--emerald);
+
+background: var(--footer-glass);
+
+padding: 0.9em 2.7em;
+
+border-radius: 22px 22px 0 0;
+
+letter-spacing: 0.06em;
+
+box-shadow: 0 5px 22px 0 rgba(68,226,178,0.15);
+
+animation: fadeUp 1.3s cubic-bezier(.4,0,.2,1);
+
+backdrop-filter: blur(8px);
+
+pointer-events: auto;
+
+position: relative;
+
+z-index: 2;
+
+display: flex;
+
+align-items: center;
+
+gap: 0.28em;
+
+text-shadow: 0 2px 16px #bff7ed60;
+
+user-select: none;
+
+}
+
+body.dark .with-love {
+
+background: var(--footer-glass-dark);
+
+color: #a8fff0;
+
+text-shadow: 0 2px 22px #0c6b6b30;
+
+}
+
+.love-emoji {
+
+animation: heartbeat 1.4s infinite;
+
+font-size: 1.23em;
+
+margin: 0 0.2em 0 0.2em;
+
+display: inline-block;
+
+filter: drop-shadow(0 1px 2px #aef6eb40);
+
+}
+
+.ad-name {
+
+background: linear-gradient(90deg, #44d3a6 30%, #50d8ee 70%);
+
+-webkit-background-clip: text;
+
+-webkit-text-fill-color: transparent;
+
+font-weight: 800;
+
+letter-spacing: 0.09em;
+
+}
+
+body.dark .ad-name {
+
+background: linear-gradient(90deg, #3ab5ab 30%, #93c7f3 90%);
+
+-webkit-background-clip: text;
+
+-webkit-text-fill-color: transparent;
+
+}
+
+
+
+@keyframes heartbeat {
+
+0%, 100% { transform: scale(1);}
+
+18% { transform: scale(1.18);}
+
+33% { transform: scale(0.98);}
+
+44% { transform: scale(1.10);}
+
+56% { transform: scale(0.98);}
+
+70% { transform: scale(1);}
+
+}
+
+@keyframes fadeUp {
+
+from { opacity: 0; transform: translateY(38px);}
+
+to { opacity: 1; transform: translateY(0);}
+
+}
+
+
+
+/* Small screens */
+
+@media (max-width: 500px) {
+
+.glass-card { max-width: 98vw; padding: 1.8rem 0.5rem 1.4rem 0.5rem;}
+
+.with-love { font-size: 1.09em; padding: 0.67em 1.0em;}
+
+.darkmode-btn { top: 0.7em; right: 0.6em;}
+
+}
